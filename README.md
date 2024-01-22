@@ -1,28 +1,24 @@
 # Sporty
-An AI model used to help with the workout session by keeping track of counts and movement using the mediapipe library . 
+An AI model designed to assist during workout sessions by monitoring repetitions and movements using the Mediapipe library. 
 
 <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/91c71e44324263.58171f4cc22e3.gif">
 
-## Running 
-### Ambiente y requerimientos
-Deberías usar Python 3.10.6, chequea eso antes de crear tu `virtualenv`
+## Environment and Requirements
+You should use Python 3.10.6; please verify this before creating your `virtualenv`
 
-1. Crear virtualenv usando python3 (follow https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
+1. Create a virtualenv using python3 (follow https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
+
 
         virtualenv <name_env>
 
-2. Activar el virtualenv
+2. Activate the virtualenv
 
         source <name_env>/bin/activate
 
-3. Instalar python requirements
+3. Install Python requirements
 
         pip install -r requirements.txt
-
-4. Instalar tesseract
-
-        sudo sh install.sh
-### Data 
+## Data 
 
 
-### Run
+## Run
