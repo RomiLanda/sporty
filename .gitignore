@@ -1,3 +1,5 @@
+src/__init__.py
+
 # Folders
 /input/
 !/input/.gitkeep
@@ -138,3 +140,4 @@ dmypy.json
 
 
 .vscode/launch.json
+
