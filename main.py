@@ -2,14 +2,14 @@ import cv2
 import mediapipe as mp
 from src.exercises import Exercises
 from src.utils import *
-from src.angle_body_part import BodyPartDistance
+from src.geometry_body_part import BodyPartDistance
 
 mp_holistic = mp.solutions.holistic
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 
-EXERCISE = "squat"
-VIDEO = "input/squat.mp4"
+EXERCISE = "pull_up"
+VIDEO = "input/pull-up.mp4"
 
 def video_analyzer():
     cap = cv2.VideoCapture(VIDEO)
