@@ -45,3 +45,29 @@ class BodyPartAngle:
         )
         return self._calculate_angle_from_parts(shoulder_avg, hip_avg, knee_avg)
 
+
+class BodyPartDistance:
+    def __init__(self, landmarks):
+        self.landmarks = landmarks
+    
+    def _calculate_x_distance(self, part1, part2):
+        return calculate_distances(part1, part2)[0]
+
+    def _calculate_y_distance(self, part1, part2):
+        return calculate_distances(part1, part2)[1]
+    
+    def _calculate_z_distance(self, part1, part2):
+        return calculate_distances(part1, part2)[2]
+
+    def _get_body_parts(self, *body_part_names):
+        return [detection_body_part(self.landmarks, name) for name in body_part_names]
+    
+    def is_knee_inward(self):
+        r_knee, l_knee, r_ankle, l_ankle = self._get_body_parts(
+            "RIGHT_KNEE", "LEFT_KNEE", "RIGHT_ANKLE", "LEFT_ANKLE") 
+        
+        knee_distance_x = self._calculate_x_distance(r_knee, l_knee)
+        ankle_distance_x = self._calculate_x_distance(r_ankle, l_ankle)
+
+        return knee_distance_x < ankle_distance_x
+
