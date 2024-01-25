@@ -1,5 +1,5 @@
 import numpy as np
-from src.angle_body_part import BodyPartAngle, BodyPartDistance
+from src.geometry_body_part import BodyPartAngle, BodyPartDistance
 from src.utils import *
 
 
@@ -7,7 +7,7 @@ class Exercises(BodyPartAngle, BodyPartDistance):
     def __init__(self, landmarks):
         super().__init__(landmarks)
 
-    def pull_up(self, counter, status):
+    def pull_up(self, counter, status, pose):
 
         left_elbow = detection_body_part(self.landmarks, "LEFT_ELBOW")
         right_elbow = detection_body_part(self.landmarks, "RIGHT_ELBOW")
@@ -27,7 +27,7 @@ class Exercises(BodyPartAngle, BodyPartDistance):
             if avg_shoulder < avg_elbow:
                 status = True
 
-        return counter, status
+        return counter, status, pose
 
     
     def squat(self, counter, status, pose):
