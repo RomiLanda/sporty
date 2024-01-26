@@ -23,11 +23,18 @@ def calculate_angle(landmark1, landmark2, landmark3):
     # Calculate the angle between the three points
     angle = math.degrees(math.atan2(y3 - y2, x3 - x2) - math.atan2(y1 - y2, x1 - x2))
     
-    # Check if the angle is less than zero.
-    if angle < 0:
-        angle += 360
+    if angle > 180.0:
+        angle = 360 - angle
 
     return angle
+
+def calculate_distances(landmark1, landmark2):
+    # Get the required landmarks' coordinates.
+    x1, y1, z1 = landmark1
+    x2, y2, z2 = landmark2
+
+    return [x2-x1, y2-y1, z2-z1]
+
 
 
 def detection_body_part(landmarks, body_part_name):
