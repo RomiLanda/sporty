@@ -1,13 +1,15 @@
 src/__init__.py
 
-# Folders
-/input/
-!/input/.gitkeep
 
-!input/workout_classifier/
+
+
+# Folders
+/input/1_test/*
+
+input/workout_classifier/*
 !input/workout_classifier/.gitkeep
 
-!input/workout_classifier_resized/
+input/workout_classifier_resized/*
 !input/workout_classifier_resized/.gitkeep
 
 /output/
