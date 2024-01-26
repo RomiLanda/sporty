@@ -20,5 +20,7 @@ You should use Python 3.10.6; please verify this before creating your `virtualen
         pip install -r requirements.txt
 ## Data 
 
+I use the [Workout Video dataset](https://www.kaggle.com/datasets/hasyimabdillah/workoutfitness-video) from Kaggle. This dataset consists of 22 different categories of workouts.
 
 ## Run
+

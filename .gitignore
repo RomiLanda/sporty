@@ -2,7 +2,9 @@ src/__init__.py
 
 # Folders
 /input/
-!/input/.gitkeep
+!/input/.gitkee
+!input/workout_classifier/.gitkeep
+!input/workout_classifier_resized/.gitkeep
 
 /output/
 !/output/.gitkeep
