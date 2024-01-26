@@ -8,8 +8,8 @@ mp_holistic = mp.solutions.holistic
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 
-EXERCISE = "pull_up"
-VIDEO = "input/pull-up.mp4"
+EXERCISE = "squat"
+VIDEO = "input/squat/squat_11.mp4" # path video or 0 to camara
 
 def video_analyzer():
     cap = cv2.VideoCapture(VIDEO)
@@ -33,13 +33,13 @@ def video_analyzer():
         # Inference
         results = holistic.process(rgb_frame)
         
-        landmarks = results.pose_landmarks.landmark
-
-
-        counter, status, pose = Exercises(landmarks=landmarks).calculate_exercise(EXERCISE, counter, status, pose)
+        try:
+            landmarks = results.pose_landmarks.landmark
+            counter, status, pose = Exercises(landmarks=landmarks).calculate_exercise(EXERCISE, counter, status, pose)
+            print(counter, status, pose)
         
-        print(counter, status, pose)
-
+        except:
+            pass
 
         # Pose
         mp_drawing.draw_landmarks(frame, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
