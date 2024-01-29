@@ -6,9 +6,8 @@ from tqdm.auto import tqdm
 
 INPUT_ROOT_DIR = os.path.join("input", "workout_classifier")
 OUTPUT_DIR = os.path.join("input", "workout_classifier_resized")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 RESIZE_TO = 512
-
-all_videos = glob.glob(os.path.join(INPUT_ROOT_DIR, '*', '*'), recursive=True )
 
 
 def resize(image, img_size=512):
