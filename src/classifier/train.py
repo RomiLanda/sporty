@@ -5,13 +5,14 @@ import torch.optim as optim
 import os
 import numpy as np
 import random
-import preprocess_data
-
 from tqdm.auto import tqdm
-from model import build_model
-from load_data import VideoClassificationDataset
-from utills_classifier import save_model, save_plots, SaveBestModel
-from class_names import class_names
+
+import src.classifier.preprocess_data as preprocess_data
+from src.classifier.model import build_model
+from src.classifier.load_data import VideoClassificationDataset
+from src.classifier.utills_classifier import save_model, save_plots, SaveBestModel
+from src.classifier.class_names import class_names
+
 from torchvision.datasets.samplers import (
     RandomClipSampler, UniformClipSampler
 )

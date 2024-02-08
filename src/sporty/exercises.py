@@ -1,6 +1,6 @@
 import numpy as np
-from src.geometry_body_part import BodyPartAngle, BodyPartDistance
-from src.utils import *
+from src.sporty.geometry_body_part import BodyPartAngle, BodyPartDistance
+from src.sporty.utils import *
 
 
 class Exercises(BodyPartAngle, BodyPartDistance):

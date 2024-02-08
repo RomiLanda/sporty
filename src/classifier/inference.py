@@ -3,11 +3,12 @@ import torch
 import cv2
 import albumentations as A
 import numpy as np
-from class_names import class_names
-from model import build_model
-import preprocess_data
 
+from src.classifier.class_names import class_names
+from src.classifier.model import build_model
 
+# from class_names import class_names
+# from model import build_model
 
 def load_model_labels():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -52,8 +53,8 @@ def predict_label(frames, model, device):
 
 
  
-def predict_exercise(video_input) -> list:
-    transform = transform_image(CROP_SIZE, IMGSZ)
+def predict_exercise(video_input, crop_size, imgsz, clip_len) -> list:
+    transform = transform_image(crop_size, imgsz)
     # Load model and labels
     model, device = load_model_labels()
 
@@ -80,13 +81,18 @@ def predict_exercise(video_input) -> list:
                 predicted_labels.append(label)  # Store the predicted label
                 frames = []  # Reset frames for the next batch of frames
 
+    # Liberar recursos
     cap.release()
+    cv2.destroyAllWindows()
 
-    return predicted_labels
+    return predicted_labels 
+
+
+
 if __name__ == "__main__":
     INPUT_VIDEO = "input/workout_classifier_split/data_test/squat/squat_11.mp4"
-    CLIP_LEN = 20
+    CLIP_LEN = 16
     IMGSZ = (256, 256)
     CROP_SIZE = (224, 224)
     
-    print(predict_exercise(INPUT_VIDEO))
+    print(predict_exercise(INPUT_VIDEO, CROP_SIZE, IMGSZ, CLIP_LEN)[0])
