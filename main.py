@@ -3,7 +3,8 @@ import mediapipe as mp
 from src.sporty.exercises import Exercises
 from src.sporty.utils import *
 from src.sporty.geometry_body_part import BodyPartDistance
-# from src.classifier import inference
+from src.classifier import inference
+
 
 mp_holistic = mp.solutions.holistic
 mp_drawing = mp.solutions.drawing_utils
@@ -13,8 +14,7 @@ INPUT_VIDEO = "input/workout_classifier_split/data_test/squat/squat_11.mp4" # pa
 CLIP_LEN = 16
 IMGSZ = (256, 256)
 CROP_SIZE = (224, 224)
-# EXERCISE = inference.predict_exercise(INPUT_VIDEO, CROP_SIZE, IMGSZ, CLIP_LEN)[0]
-EXERCISE = "squat"
+EXERCISE = inference.predict_exercise(INPUT_VIDEO, CROP_SIZE, IMGSZ, CLIP_LEN)[0]
 
 # Set the desired width and height for the resized video
 FRAME_WIDTH = 1200
@@ -66,7 +66,7 @@ def video_analyzer(video, exercise):
             text= f'Exercise: {exercise} - Repetition Number: {counter} - Observation: {pose}', 
             org = (15, 25),
             fontFace = cv2.FONT_HERSHEY_SIMPLEX, 
-            fontScale = 0.8, 
+            fontScale = 1, 
             color = (255, 150, 0), 
             thickness = 2, 
             lineType=cv2.LINE_AA
