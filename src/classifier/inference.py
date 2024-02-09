@@ -76,7 +76,7 @@ def predict_exercise(video_input, crop_size, imgsz, clip_len) -> list:
             frame = process_frame(frame, transform)
             frames.append(frame)
 
-            if len(frames) == CLIP_LEN:
+            if len(frames) == clip_len:
                 label = predict_label(frames, model, device)
                 predicted_labels.append(label)  # Store the predicted label
                 frames = []  # Reset frames for the next batch of frames
@@ -90,6 +90,7 @@ def predict_exercise(video_input, crop_size, imgsz, clip_len) -> list:
 
 
 if __name__ == "__main__":
+    print("lalala")
     INPUT_VIDEO = "input/workout_classifier_split/data_test/squat/squat_11.mp4"
     CLIP_LEN = 16
     IMGSZ = (256, 256)
