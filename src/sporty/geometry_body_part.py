@@ -2,7 +2,7 @@ import mediapipe as mp
 import pandas as pd
 import numpy as np
 import cv2
-from src.utils import *
+from src.sporty.utils import *
 
 
 class BodyPartAngle:
