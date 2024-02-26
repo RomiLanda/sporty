@@ -1,5 +1,7 @@
 import cv2
 import mediapipe as mp
+import statistics as st
+
 from src.sporty.exercises import Exercises
 from src.sporty.utils import *
 from src.sporty.geometry_body_part import BodyPartDistance
@@ -10,23 +12,43 @@ mp_holistic = mp.solutions.holistic
 mp_drawing = mp.solutions.drawing_utils
 
 
-INPUT_VIDEO = "input/workout_classifier_split/data_test/squat/squat_11.mp4" # path video or 0 to camara
+INPUT_VIDEO = "input/workout_classifier_split/data_test/pull Up/pull up_1.mp4"
+
 CLIP_LEN = 16
 IMGSZ = (256, 256)
 CROP_SIZE = (224, 224)
-EXERCISE = inference.predict_exercise(INPUT_VIDEO, CROP_SIZE, IMGSZ, CLIP_LEN)[0]
+# EXERCISE = inference.predict_exercise(INPUT_VIDEO, CROP_SIZE, IMGSZ, CLIP_LEN)[0]
 
 # Set the desired width and height for the resized video
 FRAME_WIDTH = 1200
 FRAME_HEIGHT = 800
+
+def mode():
+    answer = input("Do you want to activate the exercise prediction mode? Y/N: ")
+    if answer.upper() == 'Y':
+        return True
+    elif answer.upper() == 'N':
+        return False
+    else:
+        print("Invalid input. Please enter Y or N.")
+        return mode()
+    
+
+def define_exercise(input_video):
+    if input_video !=0 and mode(): 
+        exercise =  st.mode(inference.predict_exercise(INPUT_VIDEO, CROP_SIZE, IMGSZ, CLIP_LEN))
+    else:
+        exercise = input("Enter the exercise you will be doing: ")
+    return exercise
 
 
 def initialize_holistic_model():
     return mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 
-def video_analyzer(video, exercise):
+def video_analyzer(video):
     cap = cv2.VideoCapture(video)
+    exercise = define_exercise(video)
 
     # Set the new frame width and height
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
@@ -84,6 +106,4 @@ def video_analyzer(video, exercise):
 
 
 if __name__== '__main__': 
-    print(EXERCISE)
-
-    video_analyzer(INPUT_VIDEO, EXERCISE)
+    video_analyzer(INPUT_VIDEO)
